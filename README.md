@@ -152,6 +152,24 @@ You have successfully set up a temperature‑monitoring plugin with CKN!
 
 See the full [documentation](https://cyberinfrastructure-knowledge-network.readthedocs.io/en/latest/) for detailed instructions on creating custom plug‑ins and streaming events to the knowledge graph.
 
+### Hosted Patra endpoints (Tapis Pods)
+
+CKN itself is self‑hosted — you run the broker, knowledge graph, and dashboard on your own
+infrastructure via `make up`. The [Patra Knowledge Base](https://github.com/Plale-Lab/patra-knowledge-base)
+it reports model provenance to is hosted as [Tapis Pods](https://tapis.readthedocs.io/en/latest/technical/pods.html)
+in the ICICLE tenant:
+
+| Service | URL |
+| ------- | --- |
+| Patra REST API (stable) | `https://patrabackend.pods.icicleai.tapis.io` |
+| Patra REST API (dev) | `https://patrabackend-dev.pods.icicleai.tapis.io` |
+| Patra UI | `https://patra.pods.icicleai.tapis.io` |
+| Tapis tenant | `https://icicleai.tapis.io` |
+
+Point `patra_agent` and any Patra‑integrated plugin at the stable REST API. Writes require a
+Tapis token from `https://icicleai.tapis.io/v3/oauth2/tokens`; the stable and dev backends share
+one database, so treat writes to either as production writes.
+
 ### Prerequisites
 
 - [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose) installed and running.
